@@ -1,0 +1,28 @@
+# Supabase configuration for Fitness Activity Tracking API
+# See: https://supabase.com/docs/guides/cli/config
+
+[project]
+project_id = "" # Fill in with your Supabase project ID
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public", "graphql_public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[db]
+port = 54322
+major_version = 15
+
+[auth]
+enabled = true
+site_url = "http://localhost:3000"
+additional_redirect_urls = ["https://localhost:3000"]
+jwt_expiry = 3600
+enable_signup = true
+
+[auth.email]
+enable_signup = true
+double_confirm_changes = true
+enable_confirmations = false

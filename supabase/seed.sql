@@ -1,0 +1,62 @@
+-- ============================================================================
+-- Seed Data for Fitness Activity Tracking API
+-- ============================================================================
+--
+-- NOTE: Actual seed data cannot be inserted here because the activities table
+-- references auth.users(id) via foreign key. You must first create a user
+-- through Supabase Auth (sign up via the API or dashboard), then use that
+-- user's UUID to insert sample data.
+--
+-- After creating a test user, you can use the following templates:
+--
+-- Replace '<USER_UUID>' with the actual UUID from auth.users.
+--
+-- -------------------------------------------------------------------------
+-- Sample Activities
+-- -------------------------------------------------------------------------
+--
+-- INSERT INTO activities (user_id, type, start_time, duration_sec, distance_meters, calories, notes)
+-- VALUES
+--     ('<USER_UUID>', 'RUN',      '2024-01-15 07:30:00+00', 1800, 5000,   350, 'Morning 5K run'),
+--     ('<USER_UUID>', 'RUN',      '2024-01-17 06:45:00+00', 2700, 8000,   520, 'Easy 8K recovery run'),
+--     ('<USER_UUID>', 'BIKE',     '2024-01-18 16:00:00+00', 3600, 25000,  600, 'Afternoon cycling session'),
+--     ('<USER_UUID>', 'SWIM',     '2024-01-20 08:00:00+00', 2400, 1500,   400, 'Pool session - 1.5km'),
+--     ('<USER_UUID>', 'WALK',     '2024-01-21 12:00:00+00', 3600, 4500,   200, 'Lunch break walk'),
+--     ('<USER_UUID>', 'STRENGTH', '2024-01-22 17:30:00+00', 3000, NULL,   300, 'Upper body workout'),
+--     ('<USER_UUID>', 'RUN',      '2024-01-24 07:00:00+00', 3300, 10000,  700, 'Tempo 10K run'),
+--     ('<USER_UUID>', 'BIKE',     '2024-01-26 09:00:00+00', 7200, 50000, 1100, 'Long weekend ride');
+--
+-- -------------------------------------------------------------------------
+-- Sample Activity Metrics (requires activity IDs from above inserts)
+-- -------------------------------------------------------------------------
+--
+-- INSERT INTO activity_metrics (activity_id, avg_hr, max_hr, avg_cadence, avg_power, elevation_gain_m, avg_speed_mps, avg_pace_sec_per_km)
+-- VALUES
+--     ('<ACTIVITY_1_UUID>', 155, 172, 170, NULL, 45.0,  2.78, 360),
+--     ('<ACTIVITY_2_UUID>', 140, 158, 165, NULL, 30.0,  2.96, 337),
+--     ('<ACTIVITY_3_UUID>', 135, 160, 85,  180,  350.0, 6.94, NULL),
+--     ('<ACTIVITY_4_UUID>', 145, 165, NULL, NULL, NULL,  0.625, NULL);
+--
+-- -------------------------------------------------------------------------
+-- Sample Laps (requires activity IDs from above inserts)
+-- -------------------------------------------------------------------------
+--
+-- INSERT INTO laps (activity_id, lap_index, duration_sec, distance_meters, avg_hr)
+-- VALUES
+--     ('<ACTIVITY_1_UUID>', 1, 370, 1000, 150),
+--     ('<ACTIVITY_1_UUID>', 2, 365, 1000, 153),
+--     ('<ACTIVITY_1_UUID>', 3, 358, 1000, 156),
+--     ('<ACTIVITY_1_UUID>', 4, 360, 1000, 158),
+--     ('<ACTIVITY_1_UUID>', 5, 347, 1000, 162);
+--
+-- -------------------------------------------------------------------------
+-- Sample Track Points (requires activity IDs from above inserts)
+-- -------------------------------------------------------------------------
+--
+-- INSERT INTO track_points (activity_id, timestamp, lat, lon, altitude, heart_rate, point_index)
+-- VALUES
+--     ('<ACTIVITY_1_UUID>', '2024-01-15 07:30:00+00', 44.4268, 26.1025, 85.0,  140, 1),
+--     ('<ACTIVITY_1_UUID>', '2024-01-15 07:30:05+00', 44.4269, 26.1026, 85.2,  142, 2),
+--     ('<ACTIVITY_1_UUID>', '2024-01-15 07:30:10+00', 44.4270, 26.1028, 85.5,  145, 3),
+--     ('<ACTIVITY_1_UUID>', '2024-01-15 07:30:15+00', 44.4272, 26.1030, 86.0,  148, 4),
+--     ('<ACTIVITY_1_UUID>', '2024-01-15 07:30:20+00', 44.4274, 26.1032, 86.3,  150, 5);

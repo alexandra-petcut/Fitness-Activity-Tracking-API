@@ -1,0 +1,22 @@
+{
+  "name": "fitness-tracker",
+  "private": true,
+  "scripts": {
+    "dev": "turbo dev",
+    "dev:web": "turbo dev --filter=@fitness/web",
+    "dev:mobile": "turbo dev --filter=@fitness/mobile",
+    "dev:backend": "cd backend && ./mvnw spring-boot:run",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "type-check": "turbo type-check",
+    "db:gen-types": "supabase gen types typescript --project-id $SUPABASE_PROJECT_REF > packages/shared/src/types/database.ts"
+  },
+  "devDependencies": {
+    "turbo": "^2.4.0",
+    "typescript": "^5.7.0"
+  },
+  "packageManager": "pnpm@10.30.3",
+  "engines": {
+    "node": ">=18"
+  }
+}
