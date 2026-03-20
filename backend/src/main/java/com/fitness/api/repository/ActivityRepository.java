@@ -48,7 +48,7 @@ public interface ActivityRepository extends JpaRepository<Activity, UUID> {
             COALESCE(SUM(a.calories), 0)::int AS total_calories
         FROM activities a
         WHERE a.user_id = :userId
-          AND (:type IS NULL OR a.type = :type)
+          AND (:type IS NULL OR a.type = CAST(:type AS activity_type))
           AND a.start_time >= :since
         GROUP BY week_start, week_number, year
         ORDER BY week_start DESC
@@ -72,8 +72,8 @@ public interface ActivityRepository extends JpaRepository<Activity, UUID> {
             COALESCE(SUM(a.calories), 0)::int AS total_calories
         FROM activities a
         WHERE a.user_id = :userId
-          AND (:from IS NULL OR a.start_time >= :from)
-          AND (:to IS NULL OR a.start_time <= :to)
+          AND (CAST(:from AS timestamp) IS NULL OR a.start_time >= CAST(:from AS timestamp))
+          AND (CAST(:to AS timestamp) IS NULL OR a.start_time <= CAST(:to AS timestamp))
         GROUP BY a.type
         """, nativeQuery = true)
     List<Object[]> findSummaryStats(
@@ -89,7 +89,7 @@ public interface ActivityRepository extends JpaRepository<Activity, UUID> {
         SELECT a.* FROM activities a
         JOIN activity_metrics m ON m.activity_id = a.id
         WHERE a.user_id = :userId
-          AND (:type IS NULL OR a.type = :type)
+          AND (:type IS NULL OR a.type = CAST(:type AS activity_type))
           AND m.avg_pace_sec_per_km IS NOT NULL
         ORDER BY m.avg_pace_sec_per_km ASC
         LIMIT 1
@@ -105,7 +105,7 @@ public interface ActivityRepository extends JpaRepository<Activity, UUID> {
     @Query(value = """
         SELECT a.* FROM activities a
         WHERE a.user_id = :userId
-          AND (:type IS NULL OR a.type = :type)
+          AND (:type IS NULL OR a.type = CAST(:type AS activity_type))
           AND a.distance_meters IS NOT NULL
         ORDER BY a.distance_meters DESC
         LIMIT 1
@@ -122,7 +122,7 @@ public interface ActivityRepository extends JpaRepository<Activity, UUID> {
         SELECT a.* FROM activities a
         JOIN activity_metrics m ON m.activity_id = a.id
         WHERE a.user_id = :userId
-          AND (:type IS NULL OR a.type = :type)
+          AND (:type IS NULL OR a.type = CAST(:type AS activity_type))
           AND m.elevation_gain_m IS NOT NULL
         ORDER BY m.elevation_gain_m DESC
         LIMIT 1

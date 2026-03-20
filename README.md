@@ -1,6 +1,6 @@
 # Fitness Activity Tracker
 
-A full-stack fitness activity tracking application inspired by Garmin Connect. Log workouts (run, bike, swim, walk, strength), view activity history, track weekly progress, and see personal bests.
+A full-stack fitness activity tracking application. Log workouts (run, bike, swim, walk, strength), view activity history, track weekly progress, and see personal bests.
 
 Built as a **Turborepo monorepo** with a Next.js web app, Expo mobile app, Spring Boot analytics API, and Supabase for auth and data storage.
 
@@ -23,7 +23,7 @@ Built as a **Turborepo monorepo** with a Next.js web app, Expo mobile app, Sprin
 ```
 fitness-tracker/
 ├── apps/
-│   ├── web/               # Next.js web app (dark Garmin-style dashboard)
+│   ├── web/               # Next.js web app (dark-themed dashboard)
 │   └── mobile/            # Expo / React Native mobile app
 ├── packages/
 │   ├── shared/            # @fitness/shared — types, API clients, hooks, utils

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "@fitness/shared";
 import { clsx } from "clsx";
 import {
@@ -22,6 +22,7 @@ const navItems = [
 
 export function Sidebar() {
   const pathname = usePathname();
+  const router = useRouter();
   const { signOut, user } = useAuth();
 
   return (
@@ -63,7 +64,7 @@ export function Sidebar() {
           {user?.email}
         </div>
         <button
-          onClick={() => signOut()}
+          onClick={async () => { await signOut(); router.push("/login"); }}
           className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm text-text-secondary transition hover:bg-bg-card hover:text-error"
         >
           <LogOut className="h-4 w-4" />

@@ -26,7 +26,7 @@ export default function ActivitiesPage() {
   const currentPage = filters.page ?? 0;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -87,7 +87,7 @@ export default function ActivitiesPage() {
           </p>
         </div>
       ) : (
-        <div className="space-y-3">
+        <div className="space-y-8">
           {activities.map((activity) => (
             <ActivityCard key={activity.id} activity={activity} />
           ))}

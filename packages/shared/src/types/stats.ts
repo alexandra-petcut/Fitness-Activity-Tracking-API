@@ -1,28 +1,28 @@
 import type { ActivityType } from "./activity";
 
 export interface StatsSummary {
-  total_activities: number;
-  total_distance_meters: number;
-  total_duration_sec: number;
-  total_calories: number;
-  by_type: Record<
+  totalActivities: number;
+  totalDistanceMeters: number;
+  totalDurationSec: number;
+  totalCalories: number;
+  byType: Record<
     ActivityType,
     {
       count: number;
-      distance_meters: number;
-      duration_sec: number;
+      distance: number;
+      duration: number;
       calories: number;
     }
   >;
 }
 
 export interface WeeklyStats {
-  week_start: string;
-  week_number: number;
+  weekStart: string;
+  weekNumber: number;
   year: number;
   count: number;
-  distance_meters: number;
-  duration_sec: number;
+  distanceMeters: number;
+  durationSec: number;
   calories: number;
 }
 
@@ -30,8 +30,8 @@ export interface PersonalBest {
   metric: string;
   value: number;
   unit: string;
-  activity_id: string;
-  achieved_at: string;
+  activityId: string;
+  achievedAt: string;
 }
 
 export interface PersonalBests {

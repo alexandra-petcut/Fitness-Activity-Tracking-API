@@ -34,12 +34,12 @@ export default function StatsPage() {
     type: selectedType,
   });
   const { data: personalBests, isLoading: pbLoading } = usePersonalBests(api, {
-    type: selectedType ?? ActivityType.RUN,
+    type: selectedType,
   });
 
   const weeklyChartData = (weekly ?? []).map((w) => ({
-    label: `W${w.week_number}`,
-    value: w.distance_meters / 1000,
+    label: `W${w.weekNumber}`,
+    value: w.distanceMeters / 1000,
   }));
 
   const isLoading = summaryLoading || weeklyLoading;
@@ -96,27 +96,27 @@ export default function StatsPage() {
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               <MetricCard
                 label="Total Activities"
-                value={String(summary.total_activities)}
+                value={String(summary.totalActivities)}
                 icon={TrendingUp}
                 accentColor={ACTIVITY_COLORS[ActivityType.RUN]}
               />
               <MetricCard
                 label="Total Distance"
-                value={formatDistance(summary.total_distance_meters)}
+                value={formatDistance(summary.totalDistanceMeters)}
                 icon={Ruler}
                 accentColor={ACTIVITY_COLORS[ActivityType.BIKE]}
               />
               <MetricCard
                 label="Total Duration"
-                value={formatDuration(summary.total_duration_sec)}
+                value={formatDuration(summary.totalDurationSec)}
                 icon={Clock}
                 accentColor={ACTIVITY_COLORS[ActivityType.SWIM]}
               />
               <MetricCard
                 label="Total Calories"
                 value={
-                  summary.total_calories > 0
-                    ? `${summary.total_calories}`
+                  summary.totalCalories > 0
+                    ? `${summary.totalCalories}`
                     : "—"
                 }
                 icon={Flame}
@@ -183,7 +183,7 @@ export default function StatsPage() {
                           : `${best.value.toFixed(1)} ${best.unit}`}
                     </div>
                     <div className="mt-1 text-xs text-text-muted">
-                      {new Date(best.achieved_at).toLocaleDateString("en-US", {
+                      {new Date(best.achievedAt).toLocaleDateString("en-US", {
                         month: "short",
                         day: "numeric",
                         year: "numeric",

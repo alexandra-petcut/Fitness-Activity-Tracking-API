@@ -176,7 +176,7 @@ export default function DashboardPage() {
             </Link>
           </div>
         ) : (
-          <div className="space-y-3">
+          <div className="space-y-8">
             {recentActivities.map((activity) => (
               <ActivityCard key={activity.id} activity={activity} />
             ))}

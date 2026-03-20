@@ -40,22 +40,22 @@ export default function StatsScreen() {
         <View style={styles.grid}>
           <StatCard
             label="Total Activities"
-            value={String(summary.total_activities)}
+            value={String(summary.totalActivities)}
             color={colors.accent.run}
           />
           <StatCard
             label="Total Distance"
-            value={formatDistance(summary.total_distance_meters)}
+            value={formatDistance(summary.totalDistanceMeters)}
             color={colors.accent.bike}
           />
           <StatCard
             label="Total Duration"
-            value={formatDuration(summary.total_duration_sec)}
+            value={formatDuration(summary.totalDurationSec)}
             color={colors.accent.swim}
           />
           <StatCard
             label="Total Calories"
-            value={summary.total_calories > 0 ? String(summary.total_calories) : "—"}
+            value={summary.totalCalories > 0 ? String(summary.totalCalories) : "—"}
             color={colors.accent.strength}
           />
         </View>
@@ -81,7 +81,7 @@ export default function StatsScreen() {
                   : `${best.value.toFixed(1)} ${best.unit}`}
             </Text>
             <Text style={styles.pbDate}>
-              {new Date(best.achieved_at).toLocaleDateString("en-US", {
+              {new Date(best.achievedAt).toLocaleDateString("en-US", {
                 month: "short",
                 day: "numeric",
                 year: "numeric",
